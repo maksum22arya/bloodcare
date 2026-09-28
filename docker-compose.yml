@@ -1,0 +1,41 @@
+services:
+  bloodcare:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bloodcare
+    ports:
+      - "8082:80"
+    restart: unless-stopped
+    networks:
+      - cloudflare
+      - bloodcare-internal
+    depends_on:
+      - bloodcare-api
+    mem_limit: 2G
+    cpus: "0.5"
+
+  bloodcare-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bloodcare-api
+    environment:
+      - DATA_DIR=/data
+      - DELETE_PASSWORD=letitgone
+    volumes:
+      - ./bloodcare-data:/data
+    restart: unless-stopped
+    networks:
+      - bloodcare-internal
+    mem_limit: 2G
+    cpus: "0.5"
+
+networks:
+  cloudflare:
+    external: true
+  bloodcare-internal:
+    driver: bridge
+
+volumes:
+  bloodcare-data:
