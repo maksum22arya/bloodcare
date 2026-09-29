@@ -1,6 +1,6 @@
 # BloodCare — Audit Proyek
 
-![](.attachments.77533/icon-512.png)
+![BloodcareLogo](frontend/icons/icon-512.png)
 
 > Dokumen ini adalah hasil audit kode sumber proyek **BloodCare** (per 28 September 2026).
 > Isinya: fungsi website, arsitektur sistem, spesifikasi teknis, bahasa pemrograman yang dipakai, serta temuan audit.
